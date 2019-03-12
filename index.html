@@ -38,7 +38,7 @@
 
             <div class="form__mc-form">
                 <form action="https://mixmag.us7.list-manage.com/subscribe/post-json?u=469e60fdc95222ca2a1a56033&id=6bfb6079d5" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form">
-                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email@address.com">
+                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email@address.com" required>
 
                     <div class="form__legal-section">
                         <div class="form__legal-field">
@@ -78,30 +78,8 @@
             function ajaxMailChimpForm($form) {
                 $form.submit(function(e) {
                     e.preventDefault();
-                    if (isValidEmail($form)) {
-                        submitSubscribeForm($form);
-                    } else {
-                        alert("Whoops. Try again.");
-                        var emailInput = document.getElementById("mce-EMAIL");
-                        emailInput.value = '';
-                        emailInput.focus();
-                    }
+                    submitSubscribeForm($form);
                 });
-            }
-
-            // Validate the email address in the form
-            function isValidEmail() {
-                var emailInput = document.getElementById("mce-EMAIL");
-                var emailValue = emailInput.value;
-                var atPosition = emailValue.indexOf("@");
-                var dotPosition = emailValue.lastIndexOf(".");
-
-                if (!emailValue || !emailValue.length) {
-                    return false;
-                } else if ((atPosition < 1 || (dotPosition - atPosition < 2))) {
-                    return false;
-                }
-                return true;
             }
 
             function submitSubscribeForm($form) {
